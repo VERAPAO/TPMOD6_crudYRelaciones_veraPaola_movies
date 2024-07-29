@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= actor.first_name %> <%= actor.last_name %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+    </figure>
+
+    <h1><%= actor.first_name %> <%= actor.last_name %></h1>
+    <br>
+    <p>Rating: <%= actor.rating %></p>
+    <br>
+    <h2>Películas en las que ha actuado:</h2>
+    <ul>
+        <% if (actor.movies.length > 0) { %>
+            <% actor.movies.forEach(movie => { %>
+                <li>
+                    <a href="/movies/detail/<%= movie.id %>"><%= movie.title %></a> - 
+                    <%= movie.release_date %>
+                </li>
+            <% }); %>
+        <% } else { %>
+            <p>Este actor no ha actuado en ninguna película.</p>
+        <% } %>
+    </ul>
+    <br>
+    <section>
+        <a class="botonAgregar" href="/actors/add">Agregar</a>
+        <a class="botonVolver" href="/actors">Listado de Actores</a>
+        <a class="botonModificar" href="/actors/edit/<%= actor.id %>">Modificar</a>
+        <a href="/actors/delete/<%= actor.id %>" class="botonBorrar">Borrar</a>
+    </section>
+</body>
+</html>
